@@ -1,172 +1,37 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Weather & Stars Chatbot</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.css" />
-
-<style>
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow: hidden;
-  background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Partikel-Hintergrund */
-#particles-js {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-/* Chatcontainer */
-.chat-container {
-  width: 90%;
-  max-width: 700px;
-  height: 600px;
-  border-radius: 25px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  display: flex;
-  flex-direction: column;
-  z-index: 2;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.2);
-}
-
-/* Chat Header */
-.chatroom-header {
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 1.3em;
-  text-align: center;
-  padding: 16px;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
-  box-shadow: inset 0 -2px 6px rgba(0,0,0,0.2);
-  letter-spacing: 1px;
-}
-
-/* Chat Input */
-.chatroom-input {
-  border-radius: 0 0 20px 20px;
-  border: none;
-  padding: 14px;
-  font-size: 1em;
-  outline: none;
-  background: rgba(255,255,255,0.2);
-  color: #fff;
-  box-shadow: inset 0 1px 4px rgba(0,0,0,0.2);
-}
-
-.chatroom-input::placeholder {
-  color: rgba(255,255,255,0.7);
-}
-
-.chatroom-input:focus {
-  background: rgba(255,255,255,0.3);
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
-}
-
-/* Chat Nachrichten */
-.chatroom-message.bot {
-  background: rgba(72, 123, 234, 0.85);
-  color: white;
-  border-radius: 20px;
-  padding: 10px 14px;
-  margin: 8px 0;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-  transition: transform 0.2s;
-}
-
-.chatroom-message.bot.speaking {
-  transform: scale(1.05);
-}
-
-.chatroom-message.user {
-  background: rgba(255, 255, 255, 0.85);
-  color: #333;
-  border-radius: 20px;
-  padding: 10px 14px;
-  margin: 8px 0;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-/* Scrollbar */
-.chatroom-messages::-webkit-scrollbar {
-  width: 8px;
-}
-.chatroom-messages::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.3);
-  border-radius: 4px;
-}
-
-@media(max-width: 768px) {
-  .chat-container {
-    width: 95%;
-    height: 500px;
-  }
-}
-</style>
+  <!-- Chatroom styles via jsDelivr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/index.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/themes/theme1.css" />
 </head>
 <body>
+  <div class="chat-container"></div>
 
-<div id="particles-js"></div>
+  <!-- Chatroom script via jsDelivr -->
+  <script src="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.js"></script>
 
-<div class="chat-container"></div>
+  <script>
+    // Fail-fast hint if the script didn't load
+    if (!window.Chatroom) {
+      document.body.insertAdjacentHTML('beforeend',
+        '<div style="padding:12px;color:#fff;background:#c00">Could not load Chatroom.js</div>');
+    }
 
-<script src="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-<script>
-particlesJS('particles-js', {
-  particles: {
-    number: { value: 100 },
-    color: { value: ['#ffffff','#a3c9f1','#88e0ef'] },
-    shape: { type: 'circle' },
-    opacity: { value: 0.7 },
-    size: { value: 2 },
-    line_linked: { enable: false },
-    move: { enable: true, speed: 1.5, out_mode: 'out' }
-  },
-  interactivity: {
-    detect_on: 'canvas',
-    events: {
-      onhover: { enable: true, mode: 'repulse' },
-      onclick: { enable: true, mode: 'push' }
-    },
-    modes: { repulse: { distance: 120 }, push: { particles_nb: 4 } }
-  },
-  retina_detect: true
-});
-
-// Chatroom Dummy-Modus (Offline auf GitHub Pages)
-var chatroom = new window.Chatroom({
-  host: "", // leerer Host, lokal/offline
-  title: "Weather & Stars Chatbot",
-  container: document.querySelector(".chat-container"),
-  welcomeMessage: "Hallo! Ich bin dein Wetter- und Sterne-Assistent.",
-  speechRecognition: "en-US",
-  voiceLang: "en-US",
-  onBotMessage: (msg, elem) => {
-    elem.classList.add('speaking');
-    setTimeout(() => elem.classList.remove('speaking'), 400);
-  }
-});
-chatroom.openChat();
-</script>
-
+    var chatroom = new window.Chatroom({
+      host: "https://literate-sniffle-wv4gxrxpwq53gjxp-5005.app.github.dev",
+      title: "Chat with a bot",
+      container: document.querySelector(".chat-container"),
+      welcomeMessage: "Nice to meet you.",
+      speechRecognition: "en-US",
+      voiceLang: "en-US"
+    });
+    chatroom.openChat();
+  </script>
 </body>
 </html>
+
