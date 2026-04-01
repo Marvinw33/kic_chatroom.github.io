@@ -1,36 +1,168 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Marvin's Chatbot</title>
 
-  <!-- Chatroom styles via jsDelivr -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/index.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/themes/theme1.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/index.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/themes/theme2.css" />
+
+<style>
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1f1c2c;
+}
+
+/* Partikel-Hintergrund */
+#particles-js {
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  z-index: 0;
+}
+
+/* Chatcontainer */
+.chat-container {
+  width: 800px;
+  max-width: 110%;
+  height: 700px;
+  border-radius: 20px;
+  box-shadow: none;
+  overflow: hidden;
+  background: transparent;
+  backdrop-filter: none;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  position: relative;
+}
+
+/* Chat Header */
+.chatroom-header {
+  background: linear-gradient(135deg, #000000, #50e3c2);
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: center;
+  padding: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  box-shadow: inset 0 -2px 6px rgba(0,0,0,0.2);
+}
+
+/* Chat Input */
+.chatroom-input {
+  border-radius: 0 0 25px 25px;
+  border: none;
+  padding: 14px;
+  font-size: 1em;
+  outline: none;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.2);
+  transition: box-shadow 0.3s, background 0.3s;
+}
+
+.chatroom-input:focus {
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);
+  background: #f9f9f9;
+}
+
+/* Chat Nachrichten */
+.chatroom-message.bot {
+  background: #4a90e2;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 14px;
+  margin: 8px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  transition: transform 0.2s;
+}
+
+.chatroom-message.bot.speaking {
+  transform: scale(1.03);
+}
+
+.chatroom-message.user {
+  background: #ffffff;
+  color: #333;
+  border-radius: 20px;
+  padding: 10px 14px;
+  margin: 8px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Scrollbar */
+.chatroom-messages::-webkit-scrollbar {
+  width: 8px;
+}
+.chatroom-messages::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.3);
+  border-radius: 4px;
+}
+
+@media(max-width: 768px) {
+  .chat-container {
+    width: 90%;
+    height: 600px;
+  }
+}
+</style>
 </head>
 <body>
-  <div class="chat-container"></div>
 
-  <!-- Chatroom script via jsDelivr -->
-  <script src="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.js"></script>
+<!-- Partikel Hintergrund -->
+<div id="particles-js"></div>
 
-  <script>
-    // Fail-fast hint if the script didn't load
-    if (!window.Chatroom) {
-      document.body.insertAdjacentHTML('beforeend',
-        '<div style="padding:12px;color:#fff;background:#c00">Could not load Chatroom.js</div>');
+<!-- Chatcontainer -->
+<div class="chat-container"></div>
+
+<script src="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script>
+  // Partikel Animation
+  particlesJS('particles-js', {
+    particles: {
+      number: { value: 80 },
+      color: { value: '#ffffff' },
+      shape: { type: 'circle' },
+      opacity: { value: 0.5 },
+      size: { value: 3 },
+      line_linked: { enable: true, distance: 150, color: '#ffffff', opacity: 0.2, width: 1 },
+      move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out' }
+    },
+    interactivity: {
+      detect_on: 'canvas',
+      events: {
+        onhover: { enable: true, mode: 'repulse' },
+        onclick: { enable: true, mode: 'push' }
+      },
+      modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
+    },
+    retina_detect: true
+  });
+
+  // Chatroom
+  var chatroom = new window.Chatroom({
+    host: "https://literate-sniffle-wv4gxrxpwq53gjxp-5005.app.github.dev",
+    title: "Weather - Clothing - Packlist - Stars - Chatbot",
+    container: document.querySelector(".chat-container"),
+    welcomeMessage: "Hallo! Ich bin dein Premium-Assistent.",
+    speechRecognition: "en-US",
+    voiceLang: "en-US",
+    onBotMessage: (msg, elem) => {
+      elem.classList.add('speaking');
+      setTimeout(() => elem.classList.remove('speaking'), 400);
     }
+  });
+  chatroom.openChat();
+</script>
 
-    var chatroom = new window.Chatroom({
-      host: "https://literate-sniffle-wv4gxrxpwq53gjxp-5005.app.github.dev",
-      title: "Chat with a bot",
-      container: document.querySelector(".chat-container"),
-      welcomeMessage: "Nice to meet you.",
-      speechRecognition: "en-US",
-      voiceLang: "en-US"
-    });
-    chatroom.openChat();
-  </script>
 </body>
 </html>
