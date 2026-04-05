@@ -147,16 +147,16 @@ body, html {
 <script src="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 <script>
-// Sternenhimmel + Raketen
+// Alte funktionsfähige Sterne + Raketen Variante
 particlesJS('particles-js', {
   particles: {
-    number: { value: 700 },
+    number: { value: 600 },
     color: { value: ['#ffffff','#a3c9f1','#88e0ef','#d1caff','#ffcc33','#ff6666'] },
-    shape: { type: ['circle', 'triangle'] },
-    opacity: { value: 0.8, random: true, anim: { enable: true, speed: 1, opacity_min: 0.2, sync: false } },
-    size: { value: 2.5, random: true, anim: { enable: true, speed: 2, size_min: 1, sync: false } },
+    shape: { type: 'circle' },
+    opacity: { value: 0.8, random: true },
+    size: { value: 2.5, random: true },
     line_linked: { enable: false },
-    move: { enable: true, speed: 1, direction: 'none', random: true, out_mode: 'out' }
+    move: { enable: true, speed: 1, random: true, out_mode: 'out' }
   },
   interactivity: {
     detect_on: 'canvas',
