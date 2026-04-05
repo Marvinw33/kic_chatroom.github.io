@@ -30,21 +30,20 @@ body, html {
   z-index: 0;
 }
 
-/* Chatcontainer – Glas-Effekt */
+/* Chatcontainer – kein Blur */
 .chat-container {
-  width: 90%;
-  max-width: 720px;
+  width: 100%;
+  max-width: 800px;
   height: 620px;
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+  border-radius: 10px;
+  background: transparent; /* transparent */
+  box-shadow: none;
   display: flex;
   flex-direction: column;
   z-index: 2;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: none;
   animation: fadeIn 1s ease-in-out;
 }
 
@@ -124,21 +123,21 @@ body, html {
 <script src="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 <script>
-// Dynamischer Sternenhimmel
+// Sternenhimmel + Raketen
 particlesJS('particles-js', {
   particles: {
-    number: { value: 150 },
-    color: { value: ['#ffffff','#a3c9f1','#88e0ef','#d1caff'] },
-    shape: { type: 'circle' },
+    number: { value: 300 }, // mehr Sterne
+    color: { value: ['#ffffff','#a3c9f1','#88e0ef','#d1caff','#ffcc33','#ff6666'] },
+    shape: { type: ['circle', 'triangle'] }, // Dreiecke für Raketen
     opacity: { value: 0.8, random: true, anim: { enable: true, speed: 1, opacity_min: 0.2, sync: false } },
     size: { value: 2.5, random: true, anim: { enable: true, speed: 2, size_min: 1, sync: false } },
     line_linked: { enable: false },
-    move: { enable: true, speed: 0.6, direction: 'none', random: true, out_mode: 'out' }
+    move: { enable: true, speed: 1, direction: 'none', random: true, out_mode: 'out' }
   },
   interactivity: {
     detect_on: 'canvas',
     events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
-    modes: { repulse: { distance: 150 }, push: { particles_nb: 4 } }
+    modes: { repulse: { distance: 150 }, push: { particles_nb: 6 } }
   },
   retina_detect: true
 });
