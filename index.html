@@ -28,6 +28,7 @@ body, html {
   width: 100%;
   height: 100%;
   z-index: 0;
+  pointer-events: auto; /* Sterne immer interaktiv */
 }
 
 /* Chatcontainer – kein Blur */
@@ -36,7 +37,7 @@ body, html {
   max-width: 800px;
   height: 620px;
   border-radius: 10px;
-  background: transparent; /* transparent */
+  background: transparent;
   box-shadow: none;
   display: flex;
   flex-direction: column;
@@ -45,6 +46,13 @@ body, html {
   overflow: hidden;
   border: none;
   animation: fadeIn 1s ease-in-out;
+  transition: transform 0.4s;
+}
+
+/* Eingeklappt */
+.chat-container.collapsed {
+  transform: translateY(800px); /* komplett nach unten */
+  pointer-events: none; /* Maus klickt durch */
 }
 
 /* Header */
@@ -113,12 +121,28 @@ body, html {
 @media(max-width: 768px) {
   .chat-container { width: 95%; height: 500px; }
 }
+
+/* Toggle Button */
+.toggle-chat {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 4;
+  padding: 12px 18px;
+  background: #1e2f4d;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
 </style>
 </head>
 <body>
 
 <div id="particles-js"></div>
 <div class="chat-container"></div>
+<button class="toggle-chat">Chat ein/ausklappen</button>
 
 <script src="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
@@ -126,9 +150,9 @@ body, html {
 // Sternenhimmel + Raketen
 particlesJS('particles-js', {
   particles: {
-    number: { value: 300 }, // mehr Sterne
+    number: { value: 700 },
     color: { value: ['#ffffff','#a3c9f1','#88e0ef','#d1caff','#ffcc33','#ff6666'] },
-    shape: { type: ['circle', 'triangle'] }, // Dreiecke für Raketen
+    shape: { type: ['circle', 'triangle'] },
     opacity: { value: 0.8, random: true, anim: { enable: true, speed: 1, opacity_min: 0.2, sync: false } },
     size: { value: 2.5, random: true, anim: { enable: true, speed: 2, size_min: 1, sync: false } },
     line_linked: { enable: false },
@@ -137,7 +161,7 @@ particlesJS('particles-js', {
   interactivity: {
     detect_on: 'canvas',
     events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
-    modes: { repulse: { distance: 150 }, push: { particles_nb: 6 } }
+    modes: { repulse: { distance: 100 }, push: { particles_nb: 6 } }
   },
   retina_detect: true
 });
@@ -147,7 +171,7 @@ var chatroom = new window.Chatroom({
   host: "https://literate-sniffle-wv4gxrxpwq53gjxp-5005.app.github.dev", 
   title: "Weather & Stars Chatbot",
   container: document.querySelector(".chat-container"),
-  welcomeMessage: "Hello! I am your assistant. I can help you with the following. If you give me a "Location," I will tell you the weather there. If you write "Clothing," I will tell you what to wear. If you write "Packlist," I will tell you what to pack for your vacation at the current "Location." If you write "Question:<Input>" I will search for answers. Have fun! :)",
+  welcomeMessage: 'Hello! I am your assistant. I can help you with the following. If you give me a "Location" I will tell you the weather there. If you write "Clothing" I will tell you what to wear. If you write "Packlist" I will tell you what to pack for your vacation at the current "Location" If you write "Question:<Input>" I will search for answers. Have fun! :)',
   speechRecognition: "en-US",
   voiceLang: "en-US",
   onBotMessage: (msg, elem) => {
@@ -156,6 +180,13 @@ var chatroom = new window.Chatroom({
   }
 });
 chatroom.openChat();
+
+// Toggle-Button Funktion
+const toggleBtn = document.querySelector(".toggle-chat");
+const chatContainer = document.querySelector(".chat-container");
+toggleBtn.addEventListener("click", () => {
+  chatContainer.classList.toggle("collapsed");
+});
 </script>
 
 </body>
