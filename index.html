@@ -171,39 +171,35 @@ var chatroom = new window.Chatroom({
   host: "https://literate-sniffle-wv4gxrxpwq53gjxp-5005.app.github.dev",
   title: "Weather & Stars & Fuel Chatbot",
   container: document.querySelector(".chat-container"),
-    welcomeMessage: `
-<b>Hello! I am your assistant.</b><br><br>
+  welcomeMessage: `Hello! I am your assistant.
 
-I support you with travel, weather, and general information.<br><br>
+I support you with the following actions:
 
-<ul>
-  <li><b>Weather</b><br>
-  Provide a location and I will show the current weather.<br>
-  Example: Weather: Berlin</li><br>
+• WEATHER
+Provide a location and I will show the current weather.
+Example: Weather: Berlin
 
-  <li><b>Clothing</b><br>
-  Based on the weather, I suggest what to wear.<br>
-  Example: Clothing: Berlin</li><br>
+• CLOTHING
+Based on the weather, I suggest what to wear.
+Example: Clothing: Berlin
 
-  <li><b>Packlist</b><br>
-  I generate a packing list for your trip based on a location.<br>
-  Example: Packlist: Barcelona</li><br>
+• PACKLIST
+I generate a packing list for your trip based on a location.
+Example: Packlist: Barcelona
 
-  <li><b>General questions</b><br>
-  Ask any question using the format:<br>
-  Question: &lt;your input&gt;<br>
-  Example: Question: What is the capital of France?</li><br>
+• GENERAL QUESTIONS
+Ask any question using the format:
+Question: <your input>
+Example: Question: What is the capital of France?
 
-  <li><b>Gas station search</b><br>
-  I find suitable gas stations based on location, fuel type, and radius.<br>
-  Format: Gasstation: &lt;location&gt;, &lt;fuel_type&gt;, &lt;radius&gt;<br>
-  Example: Gasstation: Kempten, E10, 10km</li><br>
+• GAS STATION SEARCH
+I find suitable gas stations based on location, fuel type, and radius.
+Format: Gasstation: <location>, <fuel_type>, <radius>
+Example: Gasstation: Kempten, E10, 10km
 
-  <li><b>Travel information</b><br>
-  Get general travel details about a destination.<br>
-  Example: Travel info: Amsterdam</li>
-</ul>
-`,
+• TRAVEL INFORMATION
+Get general travel details about a destination.
+Example: Travel info: Amsterdam`
   speechRecognition: "en-US",
   voiceLang: "en-US",
   onBotMessage: (msg, elem) => {
