@@ -175,31 +175,29 @@ var chatroom = new window.Chatroom({
 
 I support you with the following actions:
 
-• WEATHER
+=== WEATHER ===
 Provide a location and I will show the current weather.
-Example: Weather: Berlin
+Example: "Weather: <location>"
 
-• CLOTHING
+=== CLOTHING ===
 Based on the weather, I suggest what to wear.
-Example: Clothing: Berlin
+Example: "Clothing: <location>"
 
-• PACKLIST
+=== PACKLIST ===
 I generate a packing list for your trip based on a location.
-Example: Packlist: Barcelona
+Example: "Packlist: <location>"
 
-• GENERAL QUESTIONS
+=== GENERAL QUESTIONS ===
 Ask any question using the format:
-Question: <your input>
-Example: Question: What is the capital of France?
+Example: "Question: <your input>"
 
-• GAS STATION SEARCH
+=== GAS STATION SEARCH ===
 I find suitable gas stations based on location, fuel type, and radius.
-Format: Gasstation: <location>, <fuel_type>, <radius>
-Example: Gasstation: Kempten, E10, 10km
+Example: Tankstelle: <location>, <fuel_type>, <radius>
 
-• TRAVEL INFORMATION
+=== TRAVEL INFORMATION ===
 Get general travel details about a destination.
-Example: Travel info: Amsterdam`
+Example: Travel info: <location>`
   speechRecognition: "en-US",
   voiceLang: "en-US",
   onBotMessage: (msg, elem) => {
