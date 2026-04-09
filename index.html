@@ -172,43 +172,32 @@ var chatroom = new window.Chatroom({
   host: "https://literate-sniffle-wv4gxrxpwq53gjxp-5005.app.github.dev",
   title: "Weather & Stars & Fuel Chatbot",
   container: document.querySelector(".chat-container"),
-  welcomeMessage: `Hello! I am your assistant.
-\u000A
-I support you with the following actions:
-\u000A
-=== WEATHER ===
-Provide a location and I will show the current weather.
-Example: "Weather: <location>"
-\u000A
-=== CLOTHING ===
-Based on the weather, I suggest what to wear.
-Example: "Clothing: <location>"
-\u000A
-=== PACKLIST ===
-I generate a packing list for your trip based on a location.
-Example: "Packlist: <location>"
-\u000A
-=== GENERAL QUESTIONS ===
-Ask any question using the format:
-Example: "Question: <your input>"
-\u000A
-=== GAS STATION SEARCH ===
-I find suitable gas stations based on location, fuel type, and radius.
-Example: Tankstelle: <location>, <fuel_type>, <radius>
-\u000A
-=== TRAVEL INFORMATION ===
-Get general travel details about a destination.
-Example: Travel info: <location>`,
-speechRecognition: "en-US",
- speechRecognition: "en-US",
+  speechRecognition: "en-US",
   voiceLang: "en-US",
   onBotMessage: (msg, elem) => {
     elem.classList.add('speaking');
     setTimeout(() => elem.classList.remove('speaking'), 400);
   }
 });
+
 chatroom.openChat();
 
+// Die Begrüßung in mehrere Nachrichten splitten
+const welcomeMessages = [
+  "Hello! I am your assistant.",
+  "I support you with the following actions:",
+  "=== WEATHER ===\nProvide a location and I will show the current weather.\nExample: \"Weather: <location>\"",
+  "=== CLOTHING ===\nBased on the weather, I suggest what to wear.\nExample: \"Clothing: <location>\"",
+  "=== PACKLIST ===\nI generate a packing list for your trip based on a location.\nExample: \"Packlist: <location>\"",
+  "=== GENERAL QUESTIONS ===\nAsk any question using the format:\nExample: \"Question: <your input>\"",
+  "=== GAS STATION SEARCH ===\nI find suitable gas stations based on location, fuel type, and radius.\nExample: Tankstelle: <location>, <fuel_type>, <radius>",
+  "=== TRAVEL INFORMATION ===\nGet general travel details about a destination.\nExample: Travel info: <location>"
+];
+
+// Nachrichten nacheinander senden
+welcomeMessages.forEach(msg => {
+  chatroom.sendBotMessage(msg);
+});
 // Toggle-Button Funktion
 const toggleBtn = document.querySelector(".toggle-chat");
 const chatContainer = document.querySelector(".chat-container");
