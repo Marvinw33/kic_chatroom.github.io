@@ -32,6 +32,7 @@ body, html {
 
 /* Chatcontainer – kein Blur */
 .chat-container {
+  white-space: pre-line;
   width: 100%;
   max-width: 800px;
   height: 620px;
@@ -171,8 +172,35 @@ var chatroom = new window.Chatroom({
   host: "https://literate-sniffle-wv4gxrxpwq53gjxp-5005.app.github.dev",
   title: "Weather & Stars & Fuel Chatbot",
   container: document.querySelector(".chat-container"),
-welcomeMessage: "Hello! I am your assistant. I support you with the following actions: | WEATHER: Provide a location and I will show the current weather. Example: 'Weather: <location>' | CLOTHING: Based on the weather, I suggest what to wear. Example: 'Clothing: <location>' | PACKLIST: I generate a packing list for your trip. Example: 'Packlist: <location>' | GENERAL QUESTIONS: Ask any question using the format. Example: 'Question: <your input>' | GAS STATION SEARCH: I find suitable gas stations based on location, fuel type, and radius. Example: 'Tankstelle: <location>, <fuel_type>, <radius>' | TRAVEL INFORMATION: Get general travel details. Example: 'Travel info: <location>'",
-  speechRecognition: "en-US",
+  welcomeMessage: `Hello! I am your assistant.
+
+I support you with the following actions:
+
+=== WEATHER ===
+Provide a location and I will show the current weather.
+Example: "Weather: <location>"
+
+=== CLOTHING ===
+Based on the weather, I suggest what to wear.
+Example: "Clothing: <location>"
+
+=== PACKLIST ===
+I generate a packing list for your trip based on a location.
+Example: "Packlist: <location>"
+
+=== GENERAL QUESTIONS ===
+Ask any question using the format:
+Example: "Question: <your input>"
+
+=== GAS STATION SEARCH ===
+I find suitable gas stations based on location, fuel type, and radius.
+Example: Tankstelle: <location>, <fuel_type>, <radius>
+
+=== TRAVEL INFORMATION ===
+Get general travel details about a destination.
+Example: Travel info: <location>`,
+speechRecognition: "en-US",
+ speechRecognition: "en-US",
   voiceLang: "en-US",
   onBotMessage: (msg, elem) => {
     elem.classList.add('speaking');
