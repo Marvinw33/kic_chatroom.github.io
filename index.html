@@ -171,8 +171,7 @@ var chatroom = new window.Chatroom({
   host: "https://literate-sniffle-wv4gxrxpwq53gjxp-5005.app.github.dev",
   title: "Weather & Stars & Fuel Chatbot",
   container: document.querySelector(".chat-container"),
-welcomeMessage: "Hello! I am your assistant.\n\nI support you with the following actions:\n\n=== WEATHER ===\nProvide a location and I will show the current weather.\nExample: \"Weather: <location>\"\n\n=== CLOTHING ===\nBased on the weather, I suggest what to wear.\nExample: \"Clothing: <location>\"\n\n=== PACKLIST ===\nI generate a packing list for your trip based on a location.\nExample: \"Packlist: <location>\"\n\n=== GENERAL QUESTIONS ===\nAsk any question using the format:\nExample: \"Question: <your input>\"\n\n=== GAS STATION SEARCH ===\nI find suitable gas stations based on location, fuel type, and radius.\nExample: Tankstelle: <location>, <fuel_type>, <radius>\n\n=== TRAVEL INFORMATION ===\nGet general travel details about a destination.\nExample: Travel info: <location>",
-
+welcomeMessage: "Hello! I am your assistant. I support you with the following actions: | WEATHER: Provide a location and I will show the current weather. Example: 'Weather: <location>' | CLOTHING: Based on the weather, I suggest what to wear. Example: 'Clothing: <location>' | PACKLIST: I generate a packing list for your trip. Example: 'Packlist: <location>' | GENERAL QUESTIONS: Ask any question using the format. Example: 'Question: <your input>' | GAS STATION SEARCH: I find suitable gas stations based on location, fuel type, and radius. Example: 'Tankstelle: <location>, <fuel_type>, <radius>' | TRAVEL INFORMATION: Get general travel details. Example: 'Travel info: <location>'",
   speechRecognition: "en-US",
   voiceLang: "en-US",
   onBotMessage: (msg, elem) => {
