@@ -171,7 +171,31 @@ var chatroom = new window.Chatroom({
   host: "https://literate-sniffle-wv4gxrxpwq53gjxp-5005.app.github.dev",
   title: "Weather & Stars & Fuel Chatbot",
   container: document.querySelector(".chat-container"),
-  welcomeMessage: 'Hello! I am your assistant. I can help you with the following. If you give me a "Location," I will tell you the weather there. If you write "Clothing," I will tell you what to wear. If you write "Packlist," I will tell you what to pack for your vacation at the current "Location." If you write "Question:<Input>" I will search for answers. If you write: "Gasstation: <location>, <fuel>, <Radius>, i wil find the best gasstation for you.  Have fun! :)',
+  welcomeMessage: 'Hello! I am your assistant. I can support you with travel, weather, and general information.
+
+Available functions:
+
+Weather:
+Provide a location and I will show the current weather.
+Example: Weather: Berlin
+Clothing recommendation:
+Based on the weather, I suggest what to wear.
+Example: Clothing: Berlin
+Packlist:
+I generate a packing list for your trip based on a location.
+Example: Packlist: Barcelona
+General questions:
+Ask any question using the following format:
+Question: <your input>
+Gas station search:
+I find suitable gas stations based on location, fuel type, and radius.
+Format:
+Gasstation: <location>, <fuel_type>, <radius>
+Example:
+Gasstation: Kempten, E10, 10km
+Travel information:
+Get general travel details about a destination.
+Example: Travel info: Amsterdam',
   speechRecognition: "en-US",
   voiceLang: "en-US",
   onBotMessage: (msg, elem) => {
