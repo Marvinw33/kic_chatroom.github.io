@@ -182,16 +182,6 @@ var chatroom = new window.Chatroom({
 });
 chatroom.openChat();
 
-// Nachrichten nacheinander senden
-welcomeMessages.forEach(msg => {
-  chatroom.sendBotMessage(msg);
-});
-// Toggle-Button Funktion
-const toggleBtn = document.querySelector(".toggle-chat");
-const chatContainer = document.querySelector(".chat-container");
-toggleBtn.addEventListener("click", () => {
-  chatContainer.classList.toggle("collapsed");
-});
 </script>
 
 </body>
