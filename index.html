@@ -172,7 +172,8 @@ var chatroom = new window.Chatroom({
   host: "https://literate-sniffle-wv4gxrxpwq53gjxp-5005.app.github.dev",
   title: "Weather & Stars & Fuel Chatbot",
   container: document.querySelector(".chat-container"),
-  welcomeMessage: 'Hello! I am your assistant. You can use simple commands to interact with the system: for weather type "weather: city", for weather with clothing advice use "weather clothing: city", for travel information use "travelinfo: city", for general information use "info: city", for space and astronomy simply type "stars", for questions start with "Question: <Input>", and for gas station search use "fuel: location, fuel type, radius". Basic chat commands like hello, bye, or thanks are also supported.",
+  welcomeMessage: 'Hello! I am your assistant. welcomeMessage:
+"Commands:\nweather: city\nweather clothing: city\ntravelinfo: city\ninfo: city\nstars\nQuestion: text\nfuel: location, type, radius",
   speechRecognition: "en-US",
   voiceLang: "en-US",
   onBotMessage: (msg, elem) => {
