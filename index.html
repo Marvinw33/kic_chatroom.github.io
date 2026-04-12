@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Weather & Stars & Packlist & Question Chatbot</title>
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.css" />
 
 <style>
@@ -27,12 +28,11 @@ body, html {
   width: 100%;
   height: 100%;
   z-index: 0;
-  pointer-events: auto;
+  pointer-events: auto; /* Sterne immer interaktiv */
 }
 
 /* Chatcontainer – kein Blur */
 .chat-container {
-  white-space: pre-line;
   width: 100%;
   max-width: 800px;
   height: 620px;
@@ -51,8 +51,8 @@ body, html {
 
 /* Eingeklappt */
 .chat-container.collapsed {
-  transform: translateY(800px);
-  pointer-events: none;
+  transform: translateY(800px); /* komplett nach unten */
+  pointer-events: none; /* Maus klickt durch */
 }
 
 /* Header */
@@ -146,8 +146,8 @@ body, html {
 
 <script src="https://cdn.jsdelivr.net/gh/weberi/chatroom@master/dist/Chatroom.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-
 <script>
+
 // Alte Sterne + Raketen Variante
 particlesJS('particles-js', {
   particles: {
@@ -167,13 +167,13 @@ particlesJS('particles-js', {
   retina_detect: true
 });
 
+
 // Chatroom Dummy-Modus
 var chatroom = new window.Chatroom({
-  host: "https://literate-sniffle-wv4gxrxpwq53gjxp-5005.app.github.dev",
-  title: "Weather & Stars & Fuel Chatbot",
+  host: "https://literate-sniffle-wv4gxrxpwq53gjxp-5005.app.github.dev", 
+  title: "Weather & Stars Chatbot",
   container: document.querySelector(".chat-container"),
-  welcomeMessage: 'Hello! I am your assistant. welcomeMessage:
-"Commands:\nweather: city\nweather clothing: city\ntravelinfo: city\ninfo: city\nstars\nQuestion: text\nfuel: location, type, radius",
+  welcomeMessage: 'Hello! I am your assistant. I can help you with the following. If you give me a "Location" I will tell you the weather there. If you write "Clothing" I will tell you what to wear. If you write "Packlist" I will tell you what to pack for your vacation at the current "Location" If you write "Question:<Input>" I will search for answers. Have fun! :)',
   speechRecognition: "en-US",
   voiceLang: "en-US",
   onBotMessage: (msg, elem) => {
@@ -183,6 +183,12 @@ var chatroom = new window.Chatroom({
 });
 chatroom.openChat();
 
+// Toggle-Button Funktion
+const toggleBtn = document.querySelector(".toggle-chat");
+const chatContainer = document.querySelector(".chat-container");
+toggleBtn.addEventListener("click", () => {
+  chatContainer.classList.toggle("collapsed");
+});
 </script>
 
 </body>
